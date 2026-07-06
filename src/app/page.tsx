@@ -22,13 +22,13 @@ const STATS = [
   { value: 11, suffix: "/km", label: "Starting Fare ₹" },
 ];
 
-const SERVICE_ICONS: Record<string, React.ReactNode> = {
-  MapPin: <MapPin size={24} />,
-  Plane: <Plane size={24} />,
-  Route: <Route size={24} />,
-  Briefcase: <Briefcase size={24} />,
-  Heart: <Heart size={24} />,
-  Star: <Star size={24} />,
+const SERVICE_STYLES: Record<string, { emoji: string; bg: string; border: string }> = {
+  MapPin: { emoji: "🚕", bg: "bg-[#F0F6FF]", border: "border-[#DFEDFF]" },
+  Plane: { emoji: "✈️", bg: "bg-[#EFFFF3]", border: "border-[#D7F5E0]" },
+  Route: { emoji: "🛣️", bg: "bg-[#FFF8EB]", border: "border-[#FFEACB]" },
+  Briefcase: { emoji: "💼", bg: "bg-[#FAF5FF]", border: "border-[#EFE1FF]" },
+  Heart: { emoji: "🎀", bg: "bg-[#FFF1F6]", border: "border-[#FFDFED]" },
+  Star: { emoji: "🛕", bg: "bg-[#FFF5E6]", border: "border-[#FFE5C2]" },
 };
 
 const WHY_ICONS: Record<string, React.ReactNode> = {
@@ -214,9 +214,8 @@ export default function HomePage() {
               className="card-base p-6 group cursor-pointer"
             >
               <Link href={`/services/${service.slug}`}>
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 text-white transition-transform group-hover:scale-110"
-                  style={{ background: "linear-gradient(135deg, #136F63, #1E8F7F)" }}>
-                  {SERVICE_ICONS[service.icon]}
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-2xl transition-transform group-hover:scale-110 border-4 ${SERVICE_STYLES[service.icon].bg} ${SERVICE_STYLES[service.icon].border}`}>
+                  {SERVICE_STYLES[service.icon].emoji}
                 </div>
                 <h3 className="font-bold text-lg text-[#1C1C1E] mb-2 group-hover:text-[#136F63] transition-colors">{service.title}</h3>
                 <p className="text-sm text-[#6B6B6E] mb-4 leading-relaxed">{service.description}</p>
@@ -324,35 +323,60 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
-              whileHover={{ y: -6 }}
-              whileTap={{ scale: 0.97 }}
-              className="bg-white rounded-3xl border border-[#E7E2D8] shadow-md overflow-hidden group"
+              whileHover={{ y: -4, boxShadow: "0px 10px 30px -5px rgba(0, 0, 0, 0.08)" }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-white rounded-2xl border border-[#E7E2D8] shadow-sm overflow-hidden group transition-all"
             >
-              <Link href={`/destinations/${dest.slug}`}>
-                <div className="relative h-44 overflow-hidden">
-                  <Image
-                    src={dest.image}
-                    alt={`Cab from Bhubaneswar to ${dest.name} — ${dest.description}`}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3">
-                    <span className="text-white font-bold text-lg">{dest.name}</span>
+              <Link href={`/destinations/${dest.slug}`} className="block p-5 sm:p-6">
+                
+                {/* Top Section: Route */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-[#10B981] flex-shrink-0" />
+                    <span className="font-semibold text-sm sm:text-base text-[#1C1C1E]">Bhubaneswar</span>
                   </div>
-                  <div className="absolute top-3 right-3 bg-[#F2A93B] text-white text-xs font-bold px-2.5 py-1 rounded-lg">
-                    From {dest.startingFare}
+                  
+                  <div className="flex-1 mx-4 flex items-center">
+                    <div className="h-[2px] w-full rounded-full bg-gradient-to-r from-[#10B981]/40 via-gray-300 to-[#EF4444]/40" />
                   </div>
-                </div>
-                <div className="p-4">
-                  <p className="text-sm text-[#6B6B6E] mb-3 leading-relaxed">{dest.description}</p>
-                  <div className="flex items-center gap-4 text-xs text-[#6B6B6E]">
-                    <span className="flex items-center gap-1"><MapPin size={12} className="text-[#136F63]" /> {dest.distance}</span>
-                    <span className="flex items-center gap-1"><Clock size={12} className="text-[#136F63]" /> {dest.duration}</span>
+                  
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-sm sm:text-base text-[#1C1C1E]">{dest.name}</span>
+                    <div className="w-2 h-2 rounded-full bg-[#EF4444] flex-shrink-0" />
                   </div>
                 </div>
+
+                {/* Middle Section: Details & Price */}
+                <div className="flex items-end justify-between mb-6">
+                  <div className="flex items-center gap-4 text-xs sm:text-sm text-[#6B6B6E]">
+                    <div className="flex items-center gap-1.5">
+                      <MapPin size={14} className="text-[#EF4444]" /> 
+                      <span>{dest.distance}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Clock size={14} className="text-[#9CA3AF]" /> 
+                      <span>{dest.duration}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="text-right">
+                    <div className="font-extrabold text-xl sm:text-2xl text-[#0F4C4C]">{dest.startingFare}</div>
+                    <div className="text-[10px] sm:text-xs text-[#9CA3AF]">starting from</div>
+                  </div>
+                </div>
+
+                {/* Bottom Section: Cars & CTA */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2 py-1 rounded bg-blue-50 text-blue-600 font-medium text-[10px] sm:text-xs">Dzire</span>
+                    <span className="px-2 py-1 rounded bg-green-50 text-green-600 font-medium text-[10px] sm:text-xs">Ertiga</span>
+                    <span className="px-2 py-1 rounded bg-orange-50 text-orange-600 font-medium text-[10px] sm:text-xs">Innova</span>
+                  </div>
+                  <div className="flex items-center gap-1 font-semibold text-[#0F4C4C] text-sm group-hover:translate-x-1 transition-transform">
+                    Book <ArrowRight size={14} />
+                  </div>
+                </div>
+
               </Link>
             </motion.div>
           ))}

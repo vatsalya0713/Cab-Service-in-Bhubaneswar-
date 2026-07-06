@@ -51,7 +51,7 @@ export default function StatsCounter({ stats, className }: StatsCounterProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
-          className="text-center p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20"
+          className="text-center p-4 rounded-2xl bg-[#12161B]/10 backdrop-blur-sm border border-white/20"
         >
           <div className="text-2xl font-bold text-white mb-1">
             <Counter value={stat.value} suffix={stat.suffix} prefix={stat.prefix} />

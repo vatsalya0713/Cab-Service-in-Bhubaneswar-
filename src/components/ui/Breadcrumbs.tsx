@@ -37,17 +37,17 @@ export default function Breadcrumbs({ items, className }: BreadcrumbsProps) {
       >
         {allItems.map((item, index) => (
           <div key={index} className="flex items-center gap-1.5">
-            {index > 0 && <ChevronRight size={13} className="text-[#6B6B6E] flex-shrink-0" />}
-            {index === 0 && <Home size={13} className="text-[#6B6B6E] flex-shrink-0" />}
+            {index > 0 && <ChevronRight size={13} className="text-[#9BA3AE] flex-shrink-0" />}
+            {index === 0 && <Home size={13} className="text-[#9BA3AE] flex-shrink-0" />}
             {item.href && index < allItems.length - 1 ? (
               <Link
                 href={item.href}
-                className="text-[#6B6B6E] hover:text-[#136F63] transition-colors"
+                className="text-[#9BA3AE] hover:text-[#C9A227] transition-colors"
               >
                 {item.label}
               </Link>
             ) : (
-              <span className="text-[#1C1C1E] font-medium" aria-current="page">
+              <span className="text-[#F5F1E8] font-medium" aria-current="page">
                 {item.label}
               </span>
             )}

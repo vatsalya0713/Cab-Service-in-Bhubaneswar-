@@ -28,7 +28,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 export default function ServicesPage() {
   return (
     <div>
-      <section className="pt-24 pb-16" style={{ background: "linear-gradient(135deg, #0F4C4C 0%, #136F63 100%)" }}>
+      <section className="pt-24 pb-16" style={{ background: "linear-gradient(135deg, #A5811C 0%, #C9A227 100%)" }}>
         <div className="section-container">
           <Breadcrumbs items={[{ label: "Services" }]} className="text-white/60 mb-6" />
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Our Cab Services in Bhubaneswar</h1>
@@ -41,14 +41,14 @@ export default function ServicesPage() {
           {SERVICES.map((service) => (
             <div key={service.id} className="card-base p-6 group hover:-translate-y-1.5 transition-transform duration-200">
               <Link href={`/services/${service.slug}`}>
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 text-white" style={{ background: "linear-gradient(135deg, #136F63, #1E8F7F)" }}>
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 text-[#0B0E11]" style={{ background: "linear-gradient(135deg, #C9A227, #D9B84A)" }}>
                   {ICON_MAP[service.icon]}
                 </div>
-                <h2 className="font-bold text-xl text-[#1C1C1E] mb-2 group-hover:text-[#136F63] transition-colors">{service.title}</h2>
-                <p className="text-sm text-[#6B6B6E] mb-4 leading-relaxed">{service.description}</p>
+                <h2 className="font-bold text-xl text-[#F5F1E8] mb-2 group-hover:text-[#C9A227] transition-colors">{service.title}</h2>
+                <p className="text-sm text-[#9BA3AE] mb-4 leading-relaxed">{service.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-[#136F63] bg-[#136F63]/10 px-3 py-1 rounded-lg">From {service.startingPrice}</span>
-                  <ArrowRight size={16} className="text-[#136F63] transition-transform group-hover:translate-x-1" />
+                  <span className="text-sm font-semibold text-[#C9A227] bg-[#C9A227]/10 px-3 py-1 rounded-lg">From {service.startingPrice}</span>
+                  <ArrowRight size={16} className="text-[#C9A227] transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
             </div>
