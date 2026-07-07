@@ -4,6 +4,7 @@ import "./globals.css";
 import { SITE_CONFIG } from "@/lib/constants";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import GlobalCTA from "@/components/ui/GlobalCTA";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import StickyWhatsApp from "@/components/layout/StickyWhatsApp";
 
@@ -45,10 +46,10 @@ const ORG_JSONLD = {
       email: SITE_CONFIG.email,
       address: {
         "@type": "PostalAddress",
-        streetAddress: "[REPLACE_FULL_ADDRESS]",
+        streetAddress: "Bramheswar, Ln 3, Palasuni",
         addressLocality: "Bhubaneswar",
         addressRegion: "Odisha",
-        postalCode: "[REPLACE_PINCODE]",
+        postalCode: "751025",
         addressCountry: "IN",
       },
       geo: {
@@ -103,6 +104,31 @@ export const metadata: Metadata = {
     "Book a cab in Bhubaneswar 24/7 — local city rides, airport transfers, outstation trips to Puri, Konark, Chilika, Cuttack. Verified drivers, transparent fares, instant WhatsApp booking.",
   keywords: [
     "cab service bhubaneswar",
+    "cab services in bhubaneswar",
+    "Cheapest cab services in bhubaneswar",
+    "Best taxi service in Bhubaneswar",
+    "Top 10 taxi service in Bhubaneswar",
+    "Taxi service in bhubaneswar for outstation",
+    "Cheapest taxi service in Bhubaneswar",
+    "Cab services in bhubaneswar price",
+    "Government approved taxi fare in Bhubaneswar",
+    "Bhubaneswar cab service contact number",
+    "Best cab service in bhubaneswar to",
+    "Cheap cab service in bhubaneswar to",
+    "Cab service in bhubaneswar to price",
+    "Taxi service in bhubaneswar airport",
+    "cab services from bhubaneswar to rourkela",
+    "cab service from bhubaneswar to kolkata",
+    "taxi service in bhubaneswar",
+    "best taxi service in bhubaneswar",
+    "taxi service in bhubaneswar to puri",
+    "local taxi service in bhubaneswar",
+    "airport taxi service in bhubaneswar",
+    "cheapest taxi service in bhubaneswar for outstation",
+    "top rated taxi service in bhubaneswar",
+    "best outstation taxi service in bhubaneswar",
+    "best taxi service in bhubaneswar odisha",
+    "Taxi service in bhubaneswar contact number",
     "taxi bhubaneswar",
     "bhubaneswar to puri cab",
     "airport cab bhubaneswar",
@@ -168,6 +194,7 @@ export default function RootLayout({
         <main className="pb-[env(safe-area-inset-bottom)] md:pb-0">
           {children}
         </main>
+        <GlobalCTA />
         <Footer />
         <MobileBottomNav />
         <StickyWhatsApp />

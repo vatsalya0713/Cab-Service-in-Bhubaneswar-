@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, CarTaxiFront } from "lucide-react";
 import { SITE_CONFIG, NAV_LINKS, DESTINATIONS } from "@/lib/constants";
 
 const FooterLinkGroup = ({ title, links }: { title: string; links: { label: string; href: string }[] }) => (
@@ -35,11 +35,9 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-5">
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: "linear-gradient(135deg, #FFC107, #F5B600)" }}
+                style={{ background: "#FFB800" }}
               >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3m3 0h2l2 3v4h-2m-5 0H9m6 0a2 2 0 11-4 0 2 2 0 014 0zm-7 0a2 2 0 11-4 0 2 2 0 014 0z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                <CarTaxiFront size={24} className="text-[#15456b]" strokeWidth={2.5} />
               </div>
               <div>
                 <div className="font-bold text-white whitespace-nowrap">Cab Service in Bhubaneswar</div>

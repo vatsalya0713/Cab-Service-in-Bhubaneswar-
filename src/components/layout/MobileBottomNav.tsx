@@ -55,11 +55,11 @@ export default function MobileBottomNav() {
               >
                 <motion.div
                   whileTap={{ scale: 0.93 }}
-                  className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg relative bg-[#25D366] hover:bg-[#20bd5a]"
+                  className="w-14 h-14 rounded-full flex items-center justify-center text-[#1C1C1E] shadow-lg relative bg-[#FFB800] hover:bg-[#F2A900]"
                 >
                   <WhatsAppIcon />
                 </motion.div>
-                <span className="text-[10px] font-medium text-[#6B6B6E] mt-0.5">Book</span>
+                <span className="text-[10px] font-bold text-[#15456b] mt-0.5">Book</span>
               </a>
             );
           }
@@ -83,10 +83,10 @@ export default function MobileBottomNav() {
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-              <div className={cn("transition-colors", isActive ? "text-[#15456b]" : "text-[#6B6B6E]")}>
+              <div className={cn("transition-colors", isActive ? "text-[#15456b]" : "text-gray-400")}>
                 {Icon && <Icon size={22} strokeWidth={isActive ? 2.5 : 1.8} />}
               </div>
-              <span className={cn("text-[10px] font-medium transition-colors", isActive ? "text-[#15456b]" : "text-[#6B6B6E]")}>
+              <span className={cn("text-[10px] font-bold transition-colors", isActive ? "text-[#15456b]" : "text-gray-400")}>
                 {item.label}
               </span>
             </Link>
