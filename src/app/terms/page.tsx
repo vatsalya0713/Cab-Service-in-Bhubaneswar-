@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div>
-      <section className="pt-24 pb-16" style={{ background: "linear-gradient(135deg, #A5811C 0%, #C9A227 100%)" }}>
+      <section className="pt-24 pb-16" style={{ background: "linear-gradient(135deg, #0d2a40 0%, #15456b 100%)" }}>
         <div className="section-container">
           <Breadcrumbs items={[{ label: "Terms of Service" }]} className="text-white/60 mb-6" />
           <h1 className="text-4xl font-bold text-white mb-4">Terms of Service</h1>
@@ -65,8 +65,8 @@ export default function TermsPage() {
               },
             ].map((section) => (
               <div key={section.title}>
-                <h2 className="text-xl font-bold text-[#F5F1E8] mb-3">{section.title}</h2>
-                <p className="text-[#9BA3AE] leading-relaxed">{section.content}</p>
+                <h2 className="text-xl font-bold text-[#1f2937] mb-3">{section.title}</h2>
+                <p className="text-[#6B6B6E] leading-relaxed">{section.content}</p>
               </div>
             ))}
           </div>

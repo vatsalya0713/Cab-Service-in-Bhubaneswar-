@@ -163,7 +163,7 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
       </head>
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <Navbar />
         <main className="pb-[env(safe-area-inset-bottom)] md:pb-0">
           {children}

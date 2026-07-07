@@ -2,17 +2,17 @@
 
 @layer base {
   :root {
-    --color-primary: #136F63;
-    --color-primary-dark: #0F4C4C;
-    --color-primary-light: #1E8F7F;
-    --color-accent: #F2A93B;
-    --color-accent-dark: #D98F1F;
-    --color-accent-light: #F7C46C;
-    --color-background: #FAF7F2;
+    --color-primary: #15456b;
+    --color-primary-dark: #0d2a40;
+    --color-primary-light: #206599;
+    --color-accent: #FFC107;
+    --color-accent-dark: #e0a800;
+    --color-accent-light: #ffcd38;
+    --color-background: #f4f7f9;
     --color-surface: #FFFFFF;
     --color-text: #1C1C1E;
     --color-muted: #6B6B6E;
-    --color-border: #E7E2D8;
+    --color-border: #e2e8f0;
     --color-error: #DC2626;
 
     /* Shadows */
@@ -32,12 +32,12 @@
   }
 
   .dark {
-    --color-primary: #1E8F7F;
-    --color-primary-dark: #136F63;
+    --color-primary: #206599;
+    --color-primary-dark: #15456b;
     --color-primary-light: #2AB09C;
-    --color-accent: #F2A93B;
-    --color-accent-dark: #D98F1F;
-    --color-accent-light: #F7C46C;
+    --color-accent: #FFC107;
+    --color-accent-dark: #e0a800;
+    --color-accent-light: #ffcd38;
     --color-background: #0C1412;
     --color-surface: #14201E;
     --color-text: #F5F5F7;

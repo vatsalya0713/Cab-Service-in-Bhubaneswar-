@@ -29,7 +29,7 @@ const GALLERY_IMAGES = [
 export default function GalleryPage() {
   return (
     <div>
-      <section className="pt-24 pb-16" style={{ background: "linear-gradient(135deg, #A5811C 0%, #C9A227 100%)" }}>
+      <section className="pt-24 pb-16" style={{ background: "linear-gradient(135deg, #0d2a40 0%, #15456b 100%)" }}>
         <div className="section-container">
           <Breadcrumbs items={[{ label: "Gallery" }]} className="text-white/60 mb-6" />
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Gallery</h1>

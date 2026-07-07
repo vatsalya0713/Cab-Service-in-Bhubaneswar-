@@ -66,7 +66,7 @@ const BLOG_POSTS = [
 export default function BlogPage() {
   return (
     <div>
-      <section className="pt-24 pb-16" style={{ background: "linear-gradient(135deg, #A5811C 0%, #C9A227 100%)" }}>
+      <section className="pt-24 pb-16" style={{ background: "linear-gradient(135deg, #0d2a40 0%, #15456b 100%)" }}>
         <div className="section-container">
           <Breadcrumbs items={[{ label: "Blog" }]} className="text-white/60 mb-6" />
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Travel Tips & Guides</h1>
@@ -79,12 +79,12 @@ export default function BlogPage() {
           {BLOG_POSTS.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="card-base p-6 group hover:-translate-y-1.5 transition-transform duration-200 block">
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#C9A227]/10 text-[#C9A227]">{post.category}</span>
-                <span className="text-xs text-[#9BA3AE] flex items-center gap-1"><Clock size={11} /> {post.readTime}</span>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#FFC107]/10 text-[#FFC107]">{post.category}</span>
+                <span className="text-xs text-[#6B6B6E] flex items-center gap-1"><Clock size={11} /> {post.readTime}</span>
               </div>
-              <h2 className="font-bold text-lg text-[#F5F1E8] mb-2 group-hover:text-[#C9A227] transition-colors leading-snug">{post.title}</h2>
-              <p className="text-sm text-[#9BA3AE] leading-relaxed mb-4">{post.excerpt}</p>
-              <span className="text-xs text-[#9BA3AE]">{new Date(post.date).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}</span>
+              <h2 className="font-bold text-lg text-[#1f2937] mb-2 group-hover:text-[#FFC107] transition-colors leading-snug">{post.title}</h2>
+              <p className="text-sm text-[#6B6B6E] leading-relaxed mb-4">{post.excerpt}</p>
+              <span className="text-xs text-[#6B6B6E]">{new Date(post.date).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}</span>
             </Link>
           ))}
         </div>

@@ -3,7 +3,7 @@ import { SITE_CONFIG, DESTINATIONS } from "@/lib/constants";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import QuoteForm from "@/components/ui/QuoteForm";
 import Link from "next/link";
-import Image from "next/image";
+import { DestinationCard } from "@/components/shared/DestinationCard";
 
 export const metadata: Metadata = {
   title: "Outstation Cab from Bhubaneswar | Puri, Konark, Chilika & More",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function OutstationTaxiPage() {
   return (
     <div>
-      <section className="pt-24 pb-16" style={{ background: "linear-gradient(135deg, #A5811C 0%, #C9A227 100%)" }}>
+      <section className="pt-24 pb-16" style={{ background: "linear-gradient(135deg, #0d2a40 0%, #15456b 100%)" }}>
         <div className="section-container">
           <Breadcrumbs items={[{ label: "Services", href: "/services" }, { label: "Outstation Trips" }]} className="text-white/60 mb-6" />
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Outstation Cab from Bhubaneswar</h1>
@@ -27,26 +27,29 @@ export default function OutstationTaxiPage() {
       <section className="section-container py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-[#F5F1E8] mb-4">Explore Odisha from Bhubaneswar</h2>
-            <p className="text-[#9BA3AE] mb-4 leading-relaxed">
+            <h2 className="text-2xl font-bold text-[#1f2937] mb-4">Explore Odisha from Bhubaneswar</h2>
+            <p className="text-[#6B6B6E] mb-4 leading-relaxed">
               Odisha is home to some of India&apos;s most spectacular heritage sites, natural wonders, and pilgrimage destinations — and we are your best partner to reach them. Our outstation cab service covers every popular route from Bhubaneswar across the state, with experienced drivers who know the roads, the rest stops, and the must-see stops along the way.
             </p>
-            <p className="text-[#9BA3AE] mb-6 leading-relaxed">
+            <p className="text-[#6B6B6E] mb-6 leading-relaxed">
               We offer both one-way and round-trip outstation bookings. For round trips, you have the flexibility to set your own return time — no rushing. Our drivers wait for you at the destination so you can explore at your own pace. Night halts can be arranged on multi-day trips at an additional driver allowance.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {DESTINATIONS.map((dest) => (
-                <Link key={dest.id} href={`/destinations/${dest.slug}`} className="card-base p-4 flex gap-4 items-center group hover:-translate-y-1 transition-transform duration-200">
-                  <div className="relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
-                    <Image src={dest.image} alt={`Cab to ${dest.name} from Bhubaneswar`} fill className="object-cover" sizes="64px" loading="lazy" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-sm text-[#F5F1E8] group-hover:text-[#C9A227] transition-colors">{dest.name}</div>
-                    <div className="text-xs text-[#9BA3AE]">{dest.distance} · {dest.duration}</div>
-                    <div className="text-xs font-semibold text-[#C9A227] mt-1">From {dest.startingFare}</div>
-                  </div>
-                </Link>
+                <DestinationCard
+                  key={dest.id}
+                  originCity="Bhubaneswar"
+                  destinationCity={dest.name}
+                  distanceKm={Number(dest.distance)}
+                  durationHrs={dest.duration}
+                  startingFare={dest.startingFare}
+                  vehicles={dest.vehicles}
+                  badge={dest.badge}
+                  label={dest.label}
+                  href={`/destinations/${dest.slug}`}
+                  whatsappMessage={`Hi, I want to book a cab from Bhubaneswar to ${dest.name}`}
+                />
               ))}
             </div>
           </div>

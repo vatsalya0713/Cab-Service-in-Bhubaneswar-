@@ -9,6 +9,8 @@ import {
   Navigation, MessageCircle, Clock, Sparkles, ShieldCheck, ArrowRight
 } from "lucide-react";
 import StatsCounter from "@/components/ui/StatsCounter";
+import HeroLeadForm from "@/components/ui/HeroLeadForm";
+import { DestinationCard } from "@/components/shared/DestinationCard";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import QuoteForm from "@/components/ui/QuoteForm";
 import { SITE_CONFIG, FLEET, DESTINATIONS, SERVICES, WHY_US, FAQ } from "@/lib/constants";
@@ -22,13 +24,13 @@ const STATS = [
   { value: 11, suffix: "/km", label: "Starting Fare ₹" },
 ];
 
-const SERVICE_STYLES: Record<string, { emoji: string; bg: string; border: string }> = {
-  MapPin: { emoji: "🚕", bg: "bg-[#F0F6FF]", border: "border-[#DFEDFF]" },
-  Plane: { emoji: "✈️", bg: "bg-[#EFFFF3]", border: "border-[#D7F5E0]" },
-  Route: { emoji: "🛣️", bg: "bg-[#FFF8EB]", border: "border-[#FFEACB]" },
-  Briefcase: { emoji: "💼", bg: "bg-[#FAF5FF]", border: "border-[#EFE1FF]" },
-  Heart: { emoji: "🎀", bg: "bg-[#FFF1F6]", border: "border-[#FFDFED]" },
-  Star: { emoji: "🛕", bg: "bg-[#FFF5E6]", border: "border-[#FFE5C2]" },
+const SERVICE_ICONS: Record<string, { emoji: string, bg: string, border: string }> = {
+  MapPin: { emoji: "🚕", bg: "bg-[#f0f7ff]", border: "border-[#e0f0ff]" },
+  Plane: { emoji: "✈️", bg: "bg-[#f0fdf4]", border: "border-[#dcfce7]" },
+  Route: { emoji: "🚘", bg: "bg-[#fff7ed]", border: "border-[#ffedd5]" },
+  Briefcase: { emoji: "💼", bg: "bg-[#fdf4ff]", border: "border-[#fae8ff]" },
+  Heart: { emoji: "🎀", bg: "bg-[#fff1f2]", border: "border-[#ffe4e6]" },
+  Star: { emoji: "🛕", bg: "bg-[#fefce8]", border: "border-[#fef9c3]" },
 };
 
 const WHY_ICONS: Record<string, React.ReactNode> = {
@@ -108,87 +110,117 @@ export default function HomePage() {
   return (
     <div className="overflow-x-hidden">
       {/* ====== HERO SECTION ====== */}
-      <section className="relative min-h-[100svh] flex items-center" style={{ background: "linear-gradient(135deg, #0F4C4C 0%, #136F63 50%, #1A5F55 100%)" }}>
-        {/* Hero BG Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero-banner.jpg"
-            alt="Cab service in Bhubaneswar — a cab driving on city road at golden hour"
-            fill
-            className="object-cover mix-blend-overlay opacity-40"
-            priority
-            sizes="100vw"
-          />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F4C4C]/90 via-[#0F4C4C]/70 to-transparent" />
-        </div>
-
+      <section className="relative min-h-[100svh] flex items-center bg-[#0d2a40]" style={{ backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px)", backgroundSize: "24px 24px" }}>
         {/* Decorative circles */}
-        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-[#F2A93B]/10 blur-3xl" aria-hidden="true" />
-        <div className="absolute bottom-20 left-10 w-48 h-48 rounded-full bg-white/5 blur-2xl" aria-hidden="true" />
+        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-[#1e88e5]/10 blur-3xl" aria-hidden="true" />
+        <div className="absolute bottom-20 left-10 w-48 h-48 rounded-full bg-[#ffca28]/5 blur-2xl" aria-hidden="true" />
 
-        <div className="section-container relative z-10 pt-24 pb-16">
-          <div className="max-w-3xl">
-            {/* Badge */}
-            <motion.div {...(shouldReduceMotion ? {} : fadeUp(0))} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F2A93B]/20 border border-[#F2A93B]/40 text-[#F7C46C] text-sm font-medium mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#F2A93B] animate-pulse" />
-              Bhubaneswar&apos;s Trusted Ride Partner · Available 24/7
-            </motion.div>
+        <div className="section-container relative z-10 pt-24 pb-16 lg:pt-32">
+          <div className="grid md:grid-cols-[1fr_340px] lg:grid-cols-[1fr_400px] xl:grid-cols-[1.1fr_450px] gap-8 lg:gap-16 items-center justify-between">
+            {/* Left Content */}
+            <div className="max-w-2xl">
+              {/* Badge */}
+              <motion.div {...(shouldReduceMotion ? {} : fadeUp(0))} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#20405c] border border-white/10 text-white/90 text-xs sm:text-sm font-medium mb-6 backdrop-blur-sm shadow-sm">
+                <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#4ade80] animate-pulse"></span> 🚕 Open Now — Bhubaneswar&apos;s #1 Taxi Service</span>
+              </motion.div>
 
-            {/* H1 */}
-            <motion.h1
-              {...(shouldReduceMotion ? {} : fadeUp(0.1))}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight"
-            >
-              Your Reliable{" "}
-              <span className="text-[#F2A93B]">Cab Service</span>{" "}
-              in Bhubaneswar — Anytime, Anywhere
-            </motion.h1>
-
-            {/* Subtext */}
-            <motion.p
-              {...(shouldReduceMotion ? {} : fadeUp(0.2))}
-              className="text-lg text-white/80 mb-8 max-w-2xl leading-relaxed"
-            >
-              From quick local city rides and airport transfers to scenic outstation trips through Puri, Konark, and Chilika — we provide safe, comfortable, and transparent cab services across Odisha with fully verified drivers.
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div {...(shouldReduceMotion ? {} : fadeUp(0.3))} className="flex flex-col sm:flex-row gap-4 mb-12">
-              <a
-                href={SITE_CONFIG.whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="hero-whatsapp-btn"
-                className="flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl font-bold text-base text-white shadow-lg transition-all tap-feedback"
-                style={{ background: "linear-gradient(135deg, #F2A93B, #D98F1F)" }}
+              {/* H1 */}
+              <motion.h1
+                {...(shouldReduceMotion ? {} : fadeUp(0.1))}
+                className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-5 leading-[1.1]"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                Book on WhatsApp
-              </a>
-              <a
-                href={`tel:${SITE_CONFIG.phone}`}
-                id="hero-call-btn"
-                className="flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl font-bold text-base text-white border-2 border-white/30 hover:border-white/60 hover:bg-white/10 transition-all tap-feedback"
-              >
-                <Phone size={20} />
-                Call Now
-              </a>
-            </motion.div>
+                Best <span className="text-[#FFC107]">Taxi Service</span><br/>in Bhubaneswar
+              </motion.h1>
 
-            {/* Stats Strip */}
-            <motion.div {...(shouldReduceMotion ? {} : fadeUp(0.4))}>
-              <StatsCounter stats={STATS} />
+              {/* Subtext */}
+              <motion.p
+                {...(shouldReduceMotion ? {} : fadeUp(0.2))}
+                className="text-base sm:text-lg text-white/80 mb-6 max-w-xl leading-relaxed"
+              >
+                Voyage Travels – Trusted cab service in Bhubaneswar for <strong className="font-semibold text-white">airport transfers, Puri tours, Konark trips</strong> & local rides.
+                <br />
+                <span className="inline-block mt-2">Safe · Affordable · 24/7 Available.</span>
+              </motion.p>
+
+              {/* Checklist Pills */}
+              <motion.div {...(shouldReduceMotion ? {} : fadeUp(0.25))} className="flex flex-wrap gap-2.5 mb-10">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-transparent border border-white/20 text-white/90 text-[13px] font-medium">
+                  <span className="flex items-center justify-center w-3.5 h-3.5 rounded-sm bg-[#22c55e] text-white text-[10px]">✓</span> No Hidden Charges
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-transparent border border-white/20 text-white/90 text-[13px] font-medium">
+                  <span className="flex items-center justify-center w-3.5 h-3.5 rounded-sm bg-[#22c55e] text-white text-[10px]">✓</span> Verified Drivers
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-transparent border border-white/20 text-white/90 text-[13px] font-medium">
+                  <span className="flex items-center justify-center w-3.5 h-3.5 rounded-sm bg-[#22c55e] text-white text-[10px]">✓</span> GPS Tracked
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-transparent border border-white/20 text-white/90 text-[13px] font-medium">
+                  <span className="flex items-center justify-center w-3.5 h-3.5 rounded-sm bg-[#22c55e] text-white text-[10px]">✓</span> AC Vehicles
+                </span>
+              </motion.div>
+
+              {/* CTAs */}
+              <motion.div {...(shouldReduceMotion ? {} : fadeUp(0.3))} className="flex flex-col sm:flex-row gap-4 mb-12 max-w-sm">
+                <a
+                  href={`tel:${SITE_CONFIG.phone}`}
+                  id="hero-call-btn"
+                  className="flex-1 flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-[15px] text-[#111827] bg-[#FFC107] hover:bg-[#F5B600] transition-colors shadow-lg tap-feedback"
+                >
+                  <Phone size={18} className="text-[#111827]" />
+                  Call Now
+                </a>
+                <a
+                  href={SITE_CONFIG.whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="hero-whatsapp-btn"
+                  className="flex-1 flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-[15px] text-white bg-[#25D366] hover:bg-[#20bd5a] transition-colors shadow-lg tap-feedback"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  WhatsApp
+                </a>
+              </motion.div>
+
+              {/* Stats Grid */}
+              <motion.div {...(shouldReduceMotion ? {} : fadeUp(0.4))} className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl bg-[#203a4f] border border-white/5 shadow-sm text-center">
+                  <div className="text-xl mb-1">😊</div>
+                  <div className="font-bold text-white text-lg">1000+</div>
+                  <div className="text-[10px] text-white/60 font-medium">Happy Customers</div>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl bg-[#203a4f] border border-white/5 shadow-sm text-center">
+                  <div className="text-xl mb-1 text-yellow-400">★</div>
+                  <div className="font-bold text-white text-lg">4.9<span className="text-[13px] text-white/70">★</span></div>
+                  <div className="text-[10px] text-white/60 font-medium">Google Rating</div>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl bg-[#203a4f] border border-white/5 shadow-sm text-center">
+                  <div className="text-xl mb-1">🕛</div>
+                  <div className="font-bold text-white text-lg">24/7</div>
+                  <div className="text-[10px] text-white/60 font-medium">Available</div>
+                </div>
+                <div className="flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl bg-[#203a4f] border border-white/5 shadow-sm text-center">
+                  <div className="flex items-center justify-center w-5 h-5 bg-[#22c55e] text-white text-[12px] rounded-sm mb-2">✓</div>
+                  <div className="font-bold text-white text-lg">100%</div>
+                  <div className="text-[10px] text-white/60 font-medium">Verified Drivers</div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right Content - Lead Form */}
+            <motion.div 
+              {...(shouldReduceMotion ? {} : fadeUp(0.3))}
+              className="w-full md:justify-self-end mt-12 md:mt-0"
+            >
+              <HeroLeadForm />
             </motion.div>
           </div>
         </div>
 
         {/* Wave divider */}
-        <div className="absolute bottom-0 left-0 right-0 z-10">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20L0 60Z" fill="#FAF7F2"/>
+        <div className="absolute bottom-0 left-0 right-0 z-10 w-full overflow-hidden leading-0">
+          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-[60px] block">
+            <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20L0 60Z" fill="#f4f7f9" />
           </svg>
         </div>
       </section>
@@ -196,7 +228,7 @@ export default function HomePage() {
       {/* ====== SERVICES GRID ====== */}
       <section className="section-container py-20" aria-labelledby="services-heading">
         <motion.div {...scrollReveal} className="text-center mb-12">
-          <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#136F63] bg-[#136F63]/10 mb-4">Our Services</div>
+          <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#15456b] bg-[#15456b]/10 mb-4">Our Services</div>
           <h2 id="services-heading" className="text-3xl sm:text-4xl font-bold text-[#1C1C1E] mb-4">Everything You Need, One Reliable Service</h2>
           <p className="text-[#6B6B6E] max-w-2xl mx-auto">Whether you need a quick city ride or a multi-day outstation journey, our fleet and drivers are ready to take you there safely and comfortably.</p>
         </motion.div>
@@ -214,14 +246,14 @@ export default function HomePage() {
               className="card-base p-6 group cursor-pointer"
             >
               <Link href={`/services/${service.slug}`}>
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-2xl transition-transform group-hover:scale-110 border-4 ${SERVICE_STYLES[service.icon].bg} ${SERVICE_STYLES[service.icon].border}`}>
-                  {SERVICE_STYLES[service.icon].emoji}
+                <div className={`w-16 h-16 rounded-3xl flex items-center justify-center mb-5 text-3xl transition-transform group-hover:scale-110 border-4 ${SERVICE_ICONS[service.icon].bg} ${SERVICE_ICONS[service.icon].border} drop-shadow-sm`}>
+                  {SERVICE_ICONS[service.icon].emoji}
                 </div>
-                <h3 className="font-bold text-lg text-[#1C1C1E] mb-2 group-hover:text-[#136F63] transition-colors">{service.title}</h3>
+                <h3 className="font-bold text-lg text-[#1C1C1E] mb-2 group-hover:text-[#15456b] transition-colors">{service.title}</h3>
                 <p className="text-sm text-[#6B6B6E] mb-4 leading-relaxed">{service.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-[#136F63]">Starting {service.startingPrice}</span>
-                  <ArrowRight size={16} className="text-[#136F63] transition-transform group-hover:translate-x-1" />
+                  <span className="text-sm font-semibold text-[#15456b]">Starting {service.startingPrice}</span>
+                  <ArrowRight size={16} className="text-[#15456b] transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
             </motion.div>
@@ -230,10 +262,10 @@ export default function HomePage() {
       </section>
 
       {/* ====== FLEET SECTION ====== */}
-      <section className="py-20" style={{ background: "linear-gradient(180deg, #FAF7F2 0%, #F0EDE6 100%)" }} aria-labelledby="fleet-heading">
+      <section className="py-20" style={{ background: "linear-gradient(180deg, #f4f7f9 0%, #F0EDE6 100%)" }} aria-labelledby="fleet-heading">
         <div className="section-container">
           <motion.div {...scrollReveal} className="text-center mb-12">
-            <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#136F63] bg-[#136F63]/10 mb-4">Our Fleet</div>
+            <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#15456b] bg-[#15456b]/10 mb-4">Our Fleet</div>
             <h2 id="fleet-heading" className="text-3xl sm:text-4xl font-bold text-[#1C1C1E] mb-4">Choose Your Ride</h2>
             <p className="text-[#6B6B6E] max-w-2xl mx-auto">From compact sedans to spacious tempo travellers — every vehicle is AC-equipped, GPS-tracked, sanitized, and driven by a verified professional.</p>
           </motion.div>
@@ -248,7 +280,7 @@ export default function HomePage() {
                 transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
                 whileHover={{ y: -6 }}
                 whileTap={{ scale: 0.97 }}
-                className="bg-white rounded-3xl border border-[#E7E2D8] shadow-md overflow-hidden group"
+                className="bg-white rounded-3xl border border-[#e2e8f0] shadow-md overflow-hidden group"
               >
                 <div className="relative h-44 overflow-hidden">
                   <Image
@@ -263,7 +295,7 @@ export default function HomePage() {
                 <div className="p-5">
                   <div className="flex items-start justify-between mb-2">
                     <h3 className="font-bold text-lg text-[#1C1C1E]">{vehicle.name}</h3>
-                    <span className="text-sm font-bold text-[#136F63] bg-[#136F63]/10 px-2 py-1 rounded-lg">₹{vehicle.perKm}/km</span>
+                    <span className="text-sm font-bold text-[#15456b] bg-[#15456b]/10 px-2 py-1 rounded-lg">₹{vehicle.perKm}/km</span>
                   </div>
                   <p className="text-sm text-[#6B6B6E] mb-4">{vehicle.description}</p>
 
@@ -280,27 +312,38 @@ export default function HomePage() {
 
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {vehicle.features.map((f) => (
-                      <span key={f} className="text-[10px] font-medium px-2 py-1 rounded-full bg-[#136F63]/8 text-[#136F63] border border-[#136F63]/20">{f}</span>
+                      <span key={f} className="text-[10px] font-medium px-2 py-1 rounded-full bg-[#15456b]/8 text-[#15456b] border border-[#15456b]/20">{f}</span>
                     ))}
-                    <span className="text-[10px] font-medium px-2 py-1 rounded-full bg-[#F2A93B]/10 text-[#D98F1F] border border-[#F2A93B]/30">{vehicle.seating} Seats</span>
+                    <span className="text-[10px] font-medium px-2 py-1 rounded-full bg-[#FFC107]/10 text-[#e0a800] border border-[#FFC107]/30">{vehicle.seating} Seats</span>
                   </div>
 
-                  <a
-                    href={SITE_CONFIG.whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white transition-all tap-feedback"
-                    style={{ background: "linear-gradient(135deg, #136F63, #1E8F7F)" }}
-                  >
-                    Book this Vehicle
-                  </a>
+                  <div className="grid grid-cols-[1fr_3.25rem] gap-3">
+                    <a
+                      href={`tel:${SITE_CONFIG.phoneRaw}`}
+                      className="flex items-center justify-center gap-2 w-full h-[3.25rem] rounded-xl text-sm font-semibold text-[#111827] bg-[#FFC107] hover:bg-[#F5B600] transition-all tap-feedback"
+                    >
+                      <Phone size={16} />
+                      Call Now
+                    </a>
+                    <a
+                      href={SITE_CONFIG.whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-[3.25rem] h-[3.25rem] rounded-xl text-white transition-all tap-feedback bg-[#25D366] hover:bg-[#20bd5a]"
+                      aria-label="Book on WhatsApp"
+                    >
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
 
           <motion.div {...scrollReveal} className="text-center mt-8">
-            <Link href="/fleet" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-[#136F63] border-2 border-[#136F63] hover:bg-[#136F63] hover:text-white transition-all tap-feedback">
+            <Link href="/fleet" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-[#15456b] border-2 border-[#15456b] hover:bg-[#15456b] hover:text-white transition-all tap-feedback">
               View Full Fleet Details <ArrowRight size={16} />
             </Link>
           </motion.div>
@@ -310,7 +353,7 @@ export default function HomePage() {
       {/* ====== DESTINATIONS ====== */}
       <section className="section-container py-20" aria-labelledby="destinations-heading">
         <motion.div {...scrollReveal} className="text-center mb-12">
-          <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#F2A93B] bg-[#F2A93B]/10 mb-4">Popular Routes</div>
+          <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#FFC107] bg-[#FFC107]/10 mb-4">Popular Routes</div>
           <h2 id="destinations-heading" className="text-3xl sm:text-4xl font-bold text-[#1C1C1E] mb-4">Explore Odisha with Us</h2>
           <p className="text-[#6B6B6E] max-w-2xl mx-auto">Every route, every destination — we know the roads of Odisha inside out. Book a one-way or round trip to any of these popular destinations.</p>
         </motion.div>
@@ -323,77 +366,36 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
-              whileHover={{ y: -4, boxShadow: "0px 10px 30px -5px rgba(0, 0, 0, 0.08)" }}
-              whileTap={{ scale: 0.98 }}
-              className="bg-white rounded-2xl border border-[#E7E2D8] shadow-sm overflow-hidden group transition-all"
+              className="h-full"
             >
-              <Link href={`/destinations/${dest.slug}`} className="block p-5 sm:p-6">
-                
-                {/* Top Section: Route */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-[#10B981] flex-shrink-0" />
-                    <span className="font-semibold text-sm sm:text-base text-[#1C1C1E]">Bhubaneswar</span>
-                  </div>
-                  
-                  <div className="flex-1 mx-4 flex items-center">
-                    <div className="h-[2px] w-full rounded-full bg-gradient-to-r from-[#10B981]/40 via-gray-300 to-[#EF4444]/40" />
-                  </div>
-                  
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-sm sm:text-base text-[#1C1C1E]">{dest.name}</span>
-                    <div className="w-2 h-2 rounded-full bg-[#EF4444] flex-shrink-0" />
-                  </div>
-                </div>
-
-                {/* Middle Section: Details & Price */}
-                <div className="flex items-end justify-between mb-6">
-                  <div className="flex items-center gap-4 text-xs sm:text-sm text-[#6B6B6E]">
-                    <div className="flex items-center gap-1.5">
-                      <MapPin size={14} className="text-[#EF4444]" /> 
-                      <span>{dest.distance}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Clock size={14} className="text-[#9CA3AF]" /> 
-                      <span>{dest.duration}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="text-right">
-                    <div className="font-extrabold text-xl sm:text-2xl text-[#0F4C4C]">{dest.startingFare}</div>
-                    <div className="text-[10px] sm:text-xs text-[#9CA3AF]">starting from</div>
-                  </div>
-                </div>
-
-                {/* Bottom Section: Cars & CTA */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2 py-1 rounded bg-blue-50 text-blue-600 font-medium text-[10px] sm:text-xs">Dzire</span>
-                    <span className="px-2 py-1 rounded bg-green-50 text-green-600 font-medium text-[10px] sm:text-xs">Ertiga</span>
-                    <span className="px-2 py-1 rounded bg-orange-50 text-orange-600 font-medium text-[10px] sm:text-xs">Innova</span>
-                  </div>
-                  <div className="flex items-center gap-1 font-semibold text-[#0F4C4C] text-sm group-hover:translate-x-1 transition-transform">
-                    Book <ArrowRight size={14} />
-                  </div>
-                </div>
-
-              </Link>
+              <DestinationCard
+                originCity="Bhubaneswar"
+                destinationCity={dest.name}
+                distanceKm={Number(dest.distance)}
+                durationHrs={dest.duration}
+                startingFare={dest.startingFare}
+                vehicles={dest.vehicles}
+                badge={dest.badge}
+                label={dest.label}
+                href={`/destinations/${dest.slug}`}
+                whatsappMessage={`Hi, I want to book a cab from Bhubaneswar to ${dest.name}`}
+              />
             </motion.div>
           ))}
         </div>
 
         <motion.div {...scrollReveal} className="text-center mt-8">
-          <Link href="/destinations" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-[#136F63] border-2 border-[#136F63] hover:bg-[#136F63] hover:text-white transition-all tap-feedback">
+          <Link href="/destinations" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-[#15456b] border-2 border-[#15456b] hover:bg-[#15456b] hover:text-white transition-all tap-feedback">
             View All Destinations <ArrowRight size={16} />
           </Link>
         </motion.div>
       </section>
 
       {/* ====== WHY CHOOSE US ====== */}
-      <section className="py-20" style={{ background: "linear-gradient(135deg, #0F4C4C 0%, #136F63 100%)" }} aria-labelledby="why-us-heading">
+      <section className="py-20" style={{ background: "linear-gradient(135deg, #0d2a40 0%, #15456b 100%)" }} aria-labelledby="why-us-heading">
         <div className="section-container">
           <motion.div {...scrollReveal} className="text-center mb-12">
-            <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#F2A93B] bg-[#F2A93B]/20 mb-4">Why Choose Us</div>
+            <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#FFC107] bg-[#FFC107]/20 mb-4">Why Choose Us</div>
             <h2 id="why-us-heading" className="text-3xl sm:text-4xl font-bold text-white mb-4">What Makes Us Different</h2>
             <p className="text-white/70 max-w-2xl mx-auto">We don&apos;t just drive you — we ensure every aspect of your journey is comfortable, safe, and stress-free from the moment you book.</p>
           </motion.div>
@@ -409,7 +411,7 @@ export default function HomePage() {
                 whileHover={{ y: -4 }}
                 className="rounded-2xl p-5 bg-white/10 border border-white/15 backdrop-blur-sm"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#F2A93B]/20 border border-[#F2A93B]/30 flex items-center justify-center text-[#F2A93B] mb-3">
+                <div className="w-10 h-10 rounded-xl bg-[#FFC107]/20 border border-[#FFC107]/30 flex items-center justify-center text-[#FFC107] mb-3">
                   {WHY_ICONS[item.icon]}
                 </div>
                 <h3 className="font-bold text-white mb-1.5 text-sm">{item.title}</h3>
@@ -423,7 +425,7 @@ export default function HomePage() {
       {/* ====== TESTIMONIALS ====== */}
       <section className="section-container py-20" aria-labelledby="testimonials-heading">
         <motion.div {...scrollReveal} className="text-center mb-12">
-          <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#136F63] bg-[#136F63]/10 mb-4">Customer Reviews</div>
+          <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#15456b] bg-[#15456b]/10 mb-4">Customer Reviews</div>
           <h2 id="testimonials-heading" className="text-3xl sm:text-4xl font-bold text-[#1C1C1E] mb-4">What Our Passengers Say</h2>
           <p className="text-[#6B6B6E] max-w-2xl mx-auto text-sm">
             [SAMPLE — REPLACE WITH REAL REVIEWS] These are placeholder reviews representing the kind of feedback we consistently receive from our customers.
@@ -440,14 +442,14 @@ export default function HomePage() {
               transition={{ duration: 0.4, delay: i * 0.07, ease: "easeOut" }}
               className="card-base p-5"
             >
-              <div className="flex items-center gap-1 text-[#F2A93B] mb-3">
+              <div className="flex items-center gap-1 text-[#FFC107] mb-3">
                 {Array.from({ length: t.rating }).map((_, j) => (
                   <Star key={j} size={14} fill="currentColor" />
                 ))}
               </div>
               <p className="text-sm text-[#6B6B6E] leading-relaxed mb-4 italic">&ldquo;{t.quote}&rdquo;</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#136F63]/10 flex items-center justify-center text-[#136F63] font-bold text-sm flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-[#15456b]/10 flex items-center justify-center text-[#15456b] font-bold text-sm flex-shrink-0">
                   {t.name.charAt(0)}
                 </div>
                 <div>
@@ -464,7 +466,7 @@ export default function HomePage() {
       <section className="py-20" style={{ background: "#F0EDE6" }} aria-labelledby="pricing-heading">
         <div className="section-container">
           <motion.div {...scrollReveal} className="text-center mb-12">
-            <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#136F63] bg-[#136F63]/10 mb-4">Transparent Pricing</div>
+            <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#15456b] bg-[#15456b]/10 mb-4">Transparent Pricing</div>
             <h2 id="pricing-heading" className="text-3xl sm:text-4xl font-bold text-[#1C1C1E] mb-4">No Hidden Charges, Ever</h2>
             <p className="text-[#6B6B6E] max-w-2xl mx-auto">All fares include fuel surcharge. Tolls, parking, and state permits (if any) are communicated before your trip.</p>
           </motion.div>
@@ -472,7 +474,7 @@ export default function HomePage() {
           <motion.div {...scrollReveal} className="overflow-x-auto rounded-2xl shadow-md">
             <table className="w-full bg-white text-sm border-collapse" role="table" aria-label="Cab fare pricing table">
               <thead>
-                <tr style={{ background: "linear-gradient(135deg, #136F63, #1E8F7F)" }}>
+                <tr style={{ background: "linear-gradient(135deg, #15456b, #206599)" }}>
                   <th className="text-left px-5 py-4 text-white font-semibold">Vehicle Type</th>
                   <th className="px-4 py-4 text-white font-semibold text-center">Per KM</th>
                   <th className="px-4 py-4 text-white font-semibold text-center">8hr / 80km</th>
@@ -482,9 +484,9 @@ export default function HomePage() {
               </thead>
               <tbody>
                 {FLEET.map((v, i) => (
-                  <tr key={v.id} className={i % 2 === 0 ? "bg-white" : "bg-[#FAF7F2]"}>
+                  <tr key={v.id} className={i % 2 === 0 ? "bg-white" : "bg-[#f4f7f9]"}>
                     <td className="px-5 py-4 font-medium text-[#1C1C1E]">{v.name}</td>
-                    <td className="px-4 py-4 text-center text-[#136F63] font-semibold">₹{v.perKm}/km</td>
+                    <td className="px-4 py-4 text-center text-[#15456b] font-semibold">₹{v.perKm}/km</td>
                     <td className="px-4 py-4 text-center text-[#6B6B6E]">{v.localPackage}</td>
                     <td className="px-4 py-4 text-center text-[#6B6B6E]">{v.airportOneway}</td>
                     <td className="px-4 py-4 text-center text-[#6B6B6E]">{v.seating} pax</td>
@@ -499,7 +501,7 @@ export default function HomePage() {
       {/* ====== FAQ SECTION ====== */}
       <section className="section-container py-20" aria-labelledby="faq-heading">
         <motion.div {...scrollReveal} className="text-center mb-12">
-          <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#136F63] bg-[#136F63]/10 mb-4">FAQ</div>
+          <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#15456b] bg-[#15456b]/10 mb-4">FAQ</div>
           <h2 id="faq-heading" className="text-3xl sm:text-4xl font-bold text-[#1C1C1E] mb-4">Frequently Asked Questions</h2>
           <p className="text-[#6B6B6E] max-w-2xl mx-auto">Everything you need to know about booking a cab in Bhubaneswar answered simply and directly.</p>
         </motion.div>
@@ -508,58 +510,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ====== ABOUT / OUR GROUP SECTION ====== */}
-      <section className="py-20" style={{ background: "#F0EDE6" }} aria-labelledby="about-group-heading">
-        <div className="section-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div {...scrollReveal}>
-              <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#136F63] bg-[#136F63]/10 mb-4">Our Group</div>
-              <h2 id="about-group-heading" className="text-3xl sm:text-4xl font-bold text-[#1C1C1E] mb-4">Part of Aspira Med Group</h2>
-              <p className="text-[#6B6B6E] leading-relaxed mb-4">
-                Cab Service in Bhubaneswar is a proud venture of <strong className="text-[#1C1C1E]">Aspira Med Group</strong> — a diversified Odisha-based conglomerate with interests spanning healthcare, travel, and digital innovation. Aspira Med Group&apos;s mission is to deliver world-class services that make life better for people across the region.
-              </p>
-              <p className="text-[#6B6B6E] leading-relaxed mb-6">
-                The group&apos;s digital marketing and web technology arm, <a href="https://www.zoomdigital.in/" target="_blank" rel="noopener noreferrer" className="text-[#136F63] font-semibold hover:underline">ZoomDigital.in</a>, powers the online presence of all Aspira ventures, combining strategic marketing with beautiful, high-performance digital experiences.
-              </p>
-              <Link href="/about" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white tap-feedback" style={{ background: "linear-gradient(135deg, #136F63, #1E8F7F)" }}>
-                Learn More About Us <ArrowRight size={16} />
-              </Link>
-            </motion.div>
-            <motion.div
-              {...scrollReveal}
-              className="relative"
-            >
-              <div className="relative h-80 rounded-3xl overflow-hidden shadow-xl">
-                <Image
-                  src="/images/about-team.jpg"
-                  alt="Aspira Med Group team working in Bhubaneswar office"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  loading="lazy"
-                />
-              </div>
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-lg p-4 border border-[#E7E2D8]">
-                <div className="text-2xl font-bold text-[#136F63]">6+</div>
-                <div className="text-xs text-[#6B6B6E]">Years in Service</div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+
 
       {/* ====== QUOTE FORM ====== */}
       <section className="section-container py-20" aria-labelledby="quote-heading">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div {...scrollReveal}>
-            <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#F2A93B] bg-[#F2A93B]/10 mb-4">Get a Quote</div>
+            <div className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#FFC107] bg-[#FFC107]/10 mb-4">Get a Quote</div>
             <h2 id="quote-heading" className="text-3xl sm:text-4xl font-bold text-[#1C1C1E] mb-4">Book Your Cab in 60 Seconds</h2>
             <p className="text-[#6B6B6E] mb-6 leading-relaxed">Fill in your trip details and we&apos;ll prepare a personalised WhatsApp quote instantly. No waiting, no lengthy forms — just fast, friendly service.</p>
             <div className="space-y-3">
               {["No booking fees or hidden charges", "24/7 instant WhatsApp response", "Confirmed driver details before pickup", "Free cancellation 2+ hours ahead"].map((p) => (
                 <div key={p} className="flex items-center gap-2 text-sm text-[#6B6B6E]">
-                  <div className="w-5 h-5 rounded-full bg-[#136F63]/15 flex items-center justify-center flex-shrink-0">
-                    <BadgeCheck size={12} className="text-[#136F63]" />
+                  <div className="w-5 h-5 rounded-full bg-[#15456b]/15 flex items-center justify-center flex-shrink-0">
+                    <BadgeCheck size={12} className="text-[#15456b]" />
                   </div>
                   {p}
                 </div>
@@ -573,7 +537,7 @@ export default function HomePage() {
       </section>
 
       {/* ====== FINAL CTA BANNER ====== */}
-      <section className="py-16" style={{ background: "linear-gradient(135deg, #0F4C4C 0%, #136F63 100%)" }} aria-labelledby="cta-heading">
+      <section className="py-16" style={{ background: "linear-gradient(135deg, #0d2a40 0%, #15456b 100%)" }} aria-labelledby="cta-heading">
         <div className="section-container text-center">
           <motion.div {...scrollReveal}>
             <h2 id="cta-heading" className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Go? We&apos;re Always On.</h2>
@@ -584,21 +548,20 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="footer-cta-whatsapp"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-[#0F4C4C] text-base transition-all tap-feedback"
-                style={{ background: "linear-gradient(135deg, #F2A93B, #F7C46C)" }}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white text-base bg-[#25D366] hover:bg-[#20bd5a] transition-all tap-feedback"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
                 Book on WhatsApp
               </a>
               <a
                 href={`tel:${SITE_CONFIG.phone}`}
                 id="footer-cta-call"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white text-base border-2 border-white/30 hover:border-white hover:bg-white/10 transition-all tap-feedback"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-[#111827] text-base bg-[#FFC107] hover:bg-[#F5B600] transition-all shadow-lg tap-feedback"
               >
-                <Phone size={20} />
-                {SITE_CONFIG.phone}
+                <Phone size={20} className="text-[#111827]" />
+                Call Now
               </a>
             </div>
           </motion.div>

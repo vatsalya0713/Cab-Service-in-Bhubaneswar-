@@ -38,7 +38,7 @@ export default function MobileBottomNav() {
       role="navigation"
       style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
     >
-      <div className="bg-white border-t border-[#E7E2D8] shadow-[0_-4px_20px_0_rgba(0,0,0,0.08)] flex items-end justify-around px-2 h-16">
+      <div className="bg-white border-t border-[#e2e8f0] shadow-[0_-4px_20px_0_rgba(0,0,0,0.08)] flex items-end justify-around px-2 h-16">
         {NAV_ITEMS.map((item) => {
           const isActive = !("external" in item && item.external) && pathname === item.href;
 
@@ -55,8 +55,7 @@ export default function MobileBottomNav() {
               >
                 <motion.div
                   whileTap={{ scale: 0.93 }}
-                  className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg relative"
-                  style={{ background: "linear-gradient(135deg, #136F63, #25D366)" }}
+                  className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg relative bg-[#25D366] hover:bg-[#20bd5a]"
                 >
                   <WhatsAppIcon />
                 </motion.div>
@@ -80,14 +79,14 @@ export default function MobileBottomNav() {
                 <motion.div
                   layoutId="bottomNavIndicator"
                   className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full"
-                  style={{ background: "#136F63" }}
+                  style={{ background: "#15456b" }}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-              <div className={cn("transition-colors", isActive ? "text-[#136F63]" : "text-[#6B6B6E]")}>
+              <div className={cn("transition-colors", isActive ? "text-[#15456b]" : "text-[#6B6B6E]")}>
                 {Icon && <Icon size={22} strokeWidth={isActive ? 2.5 : 1.8} />}
               </div>
-              <span className={cn("text-[10px] font-medium transition-colors", isActive ? "text-[#136F63]" : "text-[#6B6B6E]")}>
+              <span className={cn("text-[10px] font-medium transition-colors", isActive ? "text-[#15456b]" : "text-[#6B6B6E]")}>
                 {item.label}
               </span>
             </Link>

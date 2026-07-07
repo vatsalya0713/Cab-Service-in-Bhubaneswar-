@@ -24,8 +24,7 @@ export default function StickyWhatsApp() {
         transition={{ delay: 2, type: "spring", stiffness: 200, damping: 15 }}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
-        className="relative flex items-center justify-center w-14 h-14 rounded-full text-white shadow-xl"
-        style={{ background: "linear-gradient(135deg, #136F63, #25D366)" }}
+        className="relative flex items-center justify-center w-14 h-14 rounded-full text-white shadow-xl bg-[#25D366] hover:bg-[#20bd5a]"
       >
         {/* Pulse ring */}
         <motion.span
