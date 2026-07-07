@@ -20,6 +20,7 @@ const BLOG_POSTS = [
     date: "2024-12-15",
     readTime: "5 min read",
     category: "Travel Guide",
+    image: "/images/blog/blog_places_getaway_1783419919518.png"
   },
   {
     slug: "konark-sun-temple-visit-guide",
@@ -28,6 +29,7 @@ const BLOG_POSTS = [
     date: "2024-11-28",
     readTime: "4 min read",
     category: "Travel Guide",
+    image: "/images/blog/blog_outstation_cab_1783419931086.png"
   },
   {
     slug: "chilika-lake-dolphin-spotting",
@@ -36,6 +38,7 @@ const BLOG_POSTS = [
     date: "2024-11-10",
     readTime: "6 min read",
     category: "Nature",
+    image: "/images/blog/blog_airport_taxi_1783419941750.png"
   },
   {
     slug: "corporate-cab-rental-bhubaneswar",
@@ -44,6 +47,7 @@ const BLOG_POSTS = [
     date: "2024-10-22",
     readTime: "4 min read",
     category: "Corporate",
+    image: "/images/blog/blog_taxi_fares_1783419955798.png"
   },
   {
     slug: "airport-cab-bhubaneswar-guide",
@@ -52,6 +56,7 @@ const BLOG_POSTS = [
     date: "2024-10-05",
     readTime: "3 min read",
     category: "Airport",
+    image: "/images/blog/blog_places_getaway_1783419919518.png"
   },
   {
     slug: "odisha-golden-triangle-tour",
@@ -60,7 +65,8 @@ const BLOG_POSTS = [
     date: "2024-09-18",
     readTime: "5 min read",
     category: "Tour Guide",
-  },
+    image: "/images/blog/blog_outstation_cab_1783419931086.png"
+  }
 ];
 
 export default function BlogPage() {
@@ -77,14 +83,26 @@ export default function BlogPage() {
       <section className="section-container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {BLOG_POSTS.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} className="card-base p-6 group hover:-translate-y-1.5 transition-transform duration-200 block">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#FFC107]/10 text-[#FFC107]">{post.category}</span>
-                <span className="text-xs text-[#6B6B6E] flex items-center gap-1"><Clock size={11} /> {post.readTime}</span>
+            <Link key={post.slug} href={`/blog/${post.slug}`} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 group flex flex-col h-full">
+              <div className="relative h-48 w-full overflow-hidden">
+                <img 
+                  src={post.image} 
+                  alt={post.title}
+                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-4 left-4 bg-[#FFB800] text-[#15456b] text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                  {post.category}
+                </div>
               </div>
-              <h2 className="font-bold text-lg text-[#1f2937] mb-2 group-hover:text-[#FFC107] transition-colors leading-snug">{post.title}</h2>
-              <p className="text-sm text-[#6B6B6E] leading-relaxed mb-4">{post.excerpt}</p>
-              <span className="text-xs text-[#6B6B6E]">{new Date(post.date).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}</span>
+              <div className="p-5 flex flex-col flex-1">
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-3 font-medium">
+                  <Clock size={14} className="text-[#FFB800]" />
+                  <span>{post.readTime}</span>
+                </div>
+                <h2 className="font-bold text-lg text-[#1f2937] mb-2 group-hover:text-[#15456b] transition-colors leading-snug line-clamp-2">{post.title}</h2>
+                <p className="text-sm text-[#6B6B6E] leading-relaxed mb-4 line-clamp-3 flex-1">{post.excerpt}</p>
+                <span className="text-xs text-[#6B6B6E] font-medium">{new Date(post.date).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}</span>
+              </div>
             </Link>
           ))}
         </div>

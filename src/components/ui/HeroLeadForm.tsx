@@ -42,14 +42,14 @@ export default function HeroLeadForm() {
   };
 
   return (
-    <div className="bg-white rounded-[32px] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+    <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-2xl relative overflow-hidden">
       {/* Header */}
-      <div className="flex flex-col items-center text-center mb-6">
-        <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#FFC107] text-[#1C1C1E] text-xs font-bold mb-4 shadow-sm">
+      <div className="flex flex-col items-center text-center mb-4">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFB800] text-[#1C1C1E] text-[10px] font-bold mb-2 shadow-sm">
           <span>🚕</span> INSTANT BOOKING
         </div>
-        <h3 className="text-2xl sm:text-[28px] font-extrabold text-[#111827] mb-2 leading-tight">Book Your Taxi Now</h3>
-        <p className="text-[#6B7280] text-sm">Confirm via WhatsApp in seconds!</p>
+        <h3 className="text-xl sm:text-2xl font-extrabold text-[#15456b] mb-1 leading-tight">Book Your Taxi Now</h3>
+        <p className="text-[#6B7280] text-xs">Confirm via WhatsApp in seconds!</p>
       </div>
 
       {submitted ? (
@@ -74,96 +74,96 @@ export default function HeroLeadForm() {
         </motion.div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Name */}
-            <div className="space-y-1.5">
-              <label className="text-[13px] font-semibold text-[#374151]">Your Name</label>
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-[#374151]">Your Name</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                  <User size={18} className="text-[#9CA3AF]" />
+                <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+                  <User size={14} className="text-[#9CA3AF]" />
                 </div>
                 <input
                   type="text"
                   placeholder="Enter your name"
                   {...register("name")}
-                  className={`w-full pl-10 pr-4 py-3 rounded-xl border ${errors.name ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#15456b] focus:ring-[#15456b]'} text-sm text-[#111827] placeholder-gray-400 bg-white transition-all`}
+                  className={`w-full pl-8 pr-3 py-2 rounded-lg border ${errors.name ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#15456b] focus:ring-[#15456b]'} text-xs text-[#111827] placeholder-gray-400 bg-white transition-all`}
                 />
               </div>
             </div>
 
             {/* Phone */}
-            <div className="space-y-1.5">
-              <label className="text-[13px] font-semibold text-[#374151]">Phone Number</label>
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-[#374151]">Phone Number</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                  <Phone size={18} className="text-[#9CA3AF]" />
+                <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+                  <Phone size={14} className="text-[#9CA3AF]" />
                 </div>
                 <input
                   type="tel"
                   placeholder="+91 9958829539"
                   {...register("phone")}
-                  className={`w-full pl-10 pr-4 py-3 rounded-xl border ${errors.phone ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#15456b] focus:ring-[#15456b]'} text-sm text-[#111827] placeholder-gray-400 bg-white transition-all`}
+                  className={`w-full pl-8 pr-3 py-2 rounded-lg border ${errors.phone ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#15456b] focus:ring-[#15456b]'} text-xs text-[#111827] placeholder-gray-400 bg-white transition-all`}
                 />
               </div>
             </div>
 
             {/* Pickup */}
-            <div className="space-y-1.5">
-              <label className="text-[13px] font-semibold text-[#374151]">Pickup Location</label>
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-[#374151]">Pickup Location</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                  <MapPin size={18} className="text-[#10B981]" />
+                <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+                  <MapPin size={14} className="text-[#15456b]" />
                 </div>
                 <input
                   type="text"
                   placeholder="Pickup in Bhubaneswar"
                   {...register("pickup")}
-                  className={`w-full pl-10 pr-4 py-3 rounded-xl border ${errors.pickup ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#10B981] focus:ring-[#10B981]'} text-sm text-[#111827] placeholder-gray-400 bg-white transition-all`}
+                  className={`w-full pl-8 pr-3 py-2 rounded-lg border ${errors.pickup ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#15456b] focus:ring-[#15456b]'} text-xs text-[#111827] placeholder-gray-400 bg-white transition-all`}
                 />
               </div>
             </div>
 
             {/* Drop */}
-            <div className="space-y-1.5">
-              <label className="text-[13px] font-semibold text-[#374151]">Drop Location</label>
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-[#374151]">Drop Location</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                  <MapPin size={18} className="text-[#EF4444]" />
+                <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+                  <MapPin size={14} className="text-[#FFB800]" />
                 </div>
                 <input
                   type="text"
                   placeholder="Puri / Airport / Any city"
                   {...register("drop")}
-                  className={`w-full pl-10 pr-4 py-3 rounded-xl border ${errors.drop ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#EF4444] focus:ring-[#EF4444]'} text-sm text-[#111827] placeholder-gray-400 bg-white transition-all`}
+                  className={`w-full pl-8 pr-3 py-2 rounded-lg border ${errors.drop ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#FFB800] focus:ring-[#FFB800]'} text-xs text-[#111827] placeholder-gray-400 bg-white transition-all`}
                 />
               </div>
             </div>
 
             {/* Date */}
-            <div className="space-y-1.5">
-              <label className="text-[13px] font-semibold text-[#374151]">Travel Date</label>
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-[#374151]">Travel Date</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                  <Calendar size={18} className="text-[#9CA3AF]" />
+                <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+                  <Calendar size={14} className="text-[#9CA3AF]" />
                 </div>
                 <input
                   type="date"
                   {...register("date")}
-                  className={`w-full pl-10 pr-4 py-3 rounded-xl border ${errors.date ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#15456b] focus:ring-[#15456b]'} text-sm text-[#111827] bg-white transition-all min-h-[46px]`}
+                  className={`w-full pl-8 pr-3 py-2 rounded-lg border ${errors.date ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#15456b] focus:ring-[#15456b]'} text-xs text-[#111827] bg-white transition-all min-h-[36px]`}
                 />
               </div>
             </div>
 
             {/* Vehicle */}
-            <div className="space-y-1.5">
-              <label className="text-[13px] font-semibold text-[#374151]">Vehicle Type</label>
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-[#374151]">Vehicle Type</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                  <Car size={18} className="text-[#9CA3AF]" />
+                <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+                  <Car size={14} className="text-[#9CA3AF]" />
                 </div>
                 <select
                   {...register("vehicle")}
-                  className={`w-full pl-10 pr-4 py-3 rounded-xl border ${errors.vehicle ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#15456b] focus:ring-[#15456b]'} text-sm text-[#111827] bg-white transition-all appearance-none min-h-[46px]`}
+                  className={`w-full pl-8 pr-3 py-2 rounded-lg border ${errors.vehicle ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-[#15456b] focus:ring-[#15456b]'} text-xs text-[#111827] bg-white transition-all appearance-none min-h-[36px]`}
                 >
                   <option value="" disabled hidden>Select vehicle</option>
                   <option value="Sedan (Dzire/Etios)">Sedan (Dzire/Etios)</option>
@@ -178,7 +178,7 @@ export default function HeroLeadForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full mt-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 text-base transition-all tap-feedback disabled:opacity-70"
+            className="w-full mt-3 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 text-sm transition-all shadow-md tap-feedback disabled:opacity-70"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
